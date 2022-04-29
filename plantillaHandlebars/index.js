@@ -1,11 +1,34 @@
 const express = require('express')
 const {engine} = require('express-handlebars')
 const app = express ()
-const {products} = require('./products.json')
+let products =  [
+    {
+        "product": "Iphone 12",
+        "price": 800
+    },
+    {
+        "product": "Macbook Pro 14",
+        "price": 1600
+    },
+    {
+        "product": "Apple Watch",
+        "price": 600
+    },
+    {
+        "product": "Macbook Air",
+        "price": 1000
+    },
+    {
+        "product": "Ipad",
+        "price": 900
+    }
+]
+app.use(express.json())
+app.use(express.urlencoded({extended:true}))
 
 
 app.use(express.static("public"))
-app.set("view", "./views")
+app.set("views", "./views")
 app.set("view engine", "hbs")
 app.engine(
     "hbs", 
@@ -19,14 +42,22 @@ app.engine(
 app.get("/", (req,res) =>{
     res.render("main", {titulo: "Carga tu producto"})
 })
-console.log(products)
+
 app.get("/productos", (req,res) =>{
     res.render("productos", {data: products})
 })
 
-// app.post("/productos", (req,res) =>{
-//     res.render
-// })
+app.post("/productos", (req,res) =>{
+    let {product, price} = req.body
+    let newProduct = {
+        product: product,
+        price: price
+    }
+    products.push(newProduct)
+    res.render("productos", 
+        {data: products
+        })
+})
 
 
 app.listen(8080, ()=>{

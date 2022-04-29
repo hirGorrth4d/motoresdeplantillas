@@ -30,3 +30,5 @@ const products = [
         "id": 5
     }
 ]
+
+module.exports = products

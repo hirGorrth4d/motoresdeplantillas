@@ -1,0 +1,15 @@
+html
+    div
+    h1 Productos
+
+    table 
+        thead
+            tr 
+                th Producto
+                th Precio 
+            each pr in data 
+                tbody 
+                    tr 
+                        td=pr.product 
+                        td=pr.price
+    a(href="/") Carga otro producto

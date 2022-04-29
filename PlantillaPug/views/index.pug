@@ -1,0 +1,20 @@
+html
+    head
+        title Producto
+    body
+        h1 Carga Tu Producto 
+        form(action="/productos"
+        method="post")
+            div(class="mb-3")
+                label(class="form-label") Producto
+                input(type="text"
+                name="product"
+                placeholder="producto"
+                class="form-control")
+            div(class="mb-3")
+                label Precio
+                input(type="number"
+                name="price"
+                placeholder="price")
+                button(type="submit") Enviar
+        a(href="/productos") Productos

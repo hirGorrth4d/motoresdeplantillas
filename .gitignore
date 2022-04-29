@@ -1,0 +1,8 @@
+.node_modules
+/PlantillaEjs/.node_modules
+/plantillaHandlebars/.node_modules
+/PlantillaPug/.node_modules
+
+# macOS
+
+.DS_Store

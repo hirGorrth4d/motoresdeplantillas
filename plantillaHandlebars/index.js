@@ -24,7 +24,18 @@ let products =  [
     // }
 ]
 
-let message = []
+let message = [
+    {
+        "email": "cagliolom@gmail.com",
+        "date": Date.now(),
+        "message": "hola como estas"
+    },
+    {
+        "email": "dianagotmails@gmail.com",
+        "date": Date.now(),
+        "message": "bien bien vos"
+    }
+]
 
 app.use(express.json())
 app.use(express.urlencoded({extended:true}))
@@ -46,10 +57,10 @@ app.engine(
 const http = require('http')
 const server = http.createServer(app)
 const {Server} = require('socket.io')
-const io = new Server
+const io = new Server(server)
 
 io.on("connection", (socket) => {
-    console.log("ser conecta usuario")
+    console.log("se conecta usuario")
     socket.emit("mensaje_back", message)
     socket.on("message_client", (data) => {
         console.log(data)

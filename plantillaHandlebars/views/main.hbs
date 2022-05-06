@@ -34,7 +34,18 @@
         </thead>
     </table>
 
-    <a href="/"><button style="margin: 15px">Carga otro producto</button></a>
 
+    <h1>Chat</h1>
+    <form onsubmit="return addInfo()">
+        <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Email</label>
+            <input type="text" class="form-control" name="email" placeholder="email">
+        </div>
+        <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Mensaje</label>
+            <input type="text" placeholder="mensaje" class="form-control" id="message" />
+        </div>
+        <input type="submit" value="Enviar">
+    </form>
     <div id="chat"></div>
 </div>

@@ -23,6 +23,9 @@ let products =  [
     //     "price": 900
     // }
 ]
+
+let message = []
+
 app.use(express.json())
 app.use(express.urlencoded({extended:true}))
 
@@ -47,10 +50,27 @@ const io = new Server
 
 io.on("connection", (socket) => {
     console.log("ser conecta usuario")
-    socket.emit("mensaje_back", products)
-    socket.on("dataproductos", (data)=>{
+    socket.emit("mensaje_back", message)
+    socket.on("message_client", (data) => {
+        console.log(data)
+    })
+    
+    socket.on("dataMessage", (data) =>{
+    message.push(data)
+    console.log(data)
+    io.sockets.emit("mensaje_back", message)
+    })
+})
+
+io.on("connection", (socket) =>{
+    console.log("usuario conectado")
+    socket.emit("agregar_producto", products)
+    socket.on("producto_cliente", (data)=>{
+        console.log(data)
+    })
+    socket.on("dataProducto", (data)=>{
         products.push(data)
-        io.sockets.emit("mensaje_back", products)
+        io.sockets.emit("agregar_producto", products)
     })
 })
 
